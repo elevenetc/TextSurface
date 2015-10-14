@@ -31,7 +31,7 @@ public class Alpha extends AbstractSurfaceAnimation {
 	}
 
 	@Override public void start(@Nullable final IEndListener listener) {
-		ValueAnimator animator = ValueAnimator.ofFloat(from, to);
+		ValueAnimator animator = ValueAnimator.ofInt(from, to);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
 
@@ -42,5 +42,10 @@ public class Alpha extends AbstractSurfaceAnimation {
 		});
 
 		animator.start();
+	}
+
+	@Override public void onAnimationUpdate(ValueAnimator animation) {
+		super.onAnimationUpdate(animation);
+		text.setAlpha((int) animation.getAnimatedValue());
 	}
 }
