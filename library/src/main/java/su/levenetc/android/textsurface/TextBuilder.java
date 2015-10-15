@@ -62,6 +62,14 @@ public class TextBuilder {
 		return this;
 	}
 
+	/**
+	 * params are in pixels
+	 */
+	public TextBuilder setLeftPadding(float left) {
+		padding.set(left, padding.top, padding.right, padding.bottom);
+		return this;
+	}
+
 	public TextBuilder setPadding(RectF padding) {
 		this.padding.set(padding);
 		return this;
@@ -76,7 +84,7 @@ public class TextBuilder {
 	 * Overrides all previously set paint properties
 	 */
 	public TextBuilder setPaint(Paint paint) {
-		this.paint = paint;
+		this.paint = new Paint(paint);
 		return this;
 	}
 

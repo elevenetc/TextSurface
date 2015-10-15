@@ -36,10 +36,12 @@ public class SurfaceCamera {
 		canvas.scale(scale.getScaleX(), scale.getScaleX(), scale.getPivot().x, scale.getPivot().y);
 	}
 
-	public void reset(){
+	public void reset() {
 		rotationPivot.set(0, 0);
 		scale.reset();
 		center.set(0, 0);
+		transX = 0;
+		transY = 0;
 	}
 
 	public float getCenterX() {
@@ -98,11 +100,11 @@ public class SurfaceCamera {
 		return scale.getPivot().y;
 	}
 
-	public void setScalePivotX(float value){
+	public void setScalePivotX(float value) {
 		scale.getPivot().x = value;
 	}
 
-	public void setScalePivotY(float value){
+	public void setScalePivotY(float value) {
 		scale.getPivot().y = value;
 	}
 }

@@ -15,7 +15,7 @@
         <activity
             android:name="su.levenetc.android.textsurface.sample.SampleActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

@@ -35,9 +35,7 @@ public class TextSurface extends FrameLayout {
 	}
 
 	private void config() {
-
 		setWillNotDraw(false);
-		setBackgroundColor(Color.DKGRAY);
 	}
 
 	public SurfaceCamera getCamera() {
@@ -45,7 +43,6 @@ public class TextSurface extends FrameLayout {
 	}
 
 	public void play(TYPE type, ISurfaceAnimation... animations) {
-
 		play(new AnimationsSet(type, animations));
 	}
 
@@ -67,8 +64,6 @@ public class TextSurface extends FrameLayout {
 
 	@Override protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
-//		camera.setTransX(right / 2);
-//		camera.setTransY(bottom / 2);
 	}
 
 	private void configAnimations(ISurfaceAnimation animation) {

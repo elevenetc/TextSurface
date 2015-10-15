@@ -8,7 +8,7 @@ import android.graphics.Paint;
  */
 public class Debug {
 
-	public static boolean ENABLED = true;
+	public static boolean ENABLED = false;
 
 	public static Paint RED_FILL;
 	public static Paint RED_STROKE;

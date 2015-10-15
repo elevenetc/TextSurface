@@ -12,6 +12,7 @@ import su.levenetc.android.textsurface.Debug;
 import su.levenetc.android.textsurface.SurfaceCamera;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextSurface;
+import su.levenetc.android.textsurface.contants.Pivot;
 import su.levenetc.android.textsurface.utils.Utils;
 import su.levenetc.android.textsurface.interfaces.ICameraAnimation;
 import su.levenetc.android.textsurface.interfaces.IEndListener;
@@ -28,6 +29,10 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 	private int pivot;
 	private TextSurface textSurface;
 	private SurfaceCamera camera;
+
+	public static TransSurface toCenter(Text textPivot, int duration){
+		return new TransSurface(duration, textPivot, Pivot.CENTER);
+	}
 
 	public TransSurface(int duration, Text textPivot, int pivot) {
 		this.duration = duration;

@@ -7,26 +7,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import su.levenetc.android.textsurface.Debug;
-import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextSurface;
-import su.levenetc.android.textsurface.sample.checks.AlignSample;
-import su.levenetc.android.textsurface.sample.checks.CheckRotation3D;
-import su.levenetc.android.textsurface.sample.checks.CheckShapeReveal;
-import su.levenetc.android.textsurface.sample.checks.ColorSample;
-import su.levenetc.android.textsurface.sample.checks.ScaleTextSample;
-import su.levenetc.android.textsurface.sample.checks.SlideCheck;
-import su.levenetc.android.textsurface.sample.checks.SurfaceScaleCheck;
-import su.levenetc.android.textsurface.sample.checks.SurfaceTransCheck;
+import su.levenetc.android.textsurface.sample.checks.CookieThumperSample;
 
 /**
  * Created by Eugene Levenetc.
  */
 public class SampleActivity extends AppCompatActivity {
 
-
 	private TextSurface textSurface;
-	private Text text1;
-	private Text text2;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,7 +54,8 @@ public class SampleActivity extends AppCompatActivity {
 //		SlideCheck.play(textSurface);
 //		CheckRotation3D.play(textSurface);
 //		CheckShapeReveal.play(textSurface);
-		ColorSample.play(textSurface);
+//		ColorSample.play(textSurface);
+		CookieThumperSample.play(textSurface, getAssets());
 	}
 
 }
