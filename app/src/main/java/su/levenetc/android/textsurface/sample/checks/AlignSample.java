@@ -1,7 +1,7 @@
 package su.levenetc.android.textsurface.sample.checks;
 
-import su.levenetc.android.textsurface.Align;
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.Align;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextBuilder;
 import su.levenetc.android.textsurface.TextSurface;

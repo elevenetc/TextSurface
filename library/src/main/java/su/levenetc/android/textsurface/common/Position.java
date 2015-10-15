@@ -1,7 +1,10 @@
-package su.levenetc.android.textsurface;
+package su.levenetc.android.textsurface.common;
 
 import android.graphics.PointF;
 
+import su.levenetc.android.textsurface.Text;
+import su.levenetc.android.textsurface.TextSurface;
+import su.levenetc.android.textsurface.contants.Align;
 import su.levenetc.android.textsurface.contants.Pivot;
 
 /**
@@ -52,7 +55,6 @@ public class Position {
 		return point;
 	}
 
-
 	public float getRelativeX(int pivot, Text text, boolean global) {
 		float result = 0;
 
@@ -82,7 +84,7 @@ public class Position {
 		return global ? (result + point.y + translationY) : result;
 	}
 
-	float getX(TextSurface textSurface, float textWidth) {
+	public float getX(TextSurface textSurface, float textWidth) {
 
 
 		if (isAligned()) {

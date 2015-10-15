@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-import su.levenetc.android.textsurface.Align;
+import su.levenetc.android.textsurface.contants.Align;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextBuilder;
 import su.levenetc.android.textsurface.TextSurface;

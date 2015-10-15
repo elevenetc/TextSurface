@@ -1,8 +1,8 @@
 package su.levenetc.android.textsurface.sample.checks;
 
-import su.levenetc.android.textsurface.Align;
+import su.levenetc.android.textsurface.contants.Align;
 import su.levenetc.android.textsurface.animations.AnimationsSet;
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextBuilder;
 import su.levenetc.android.textsurface.TextSurface;
@@ -14,7 +14,7 @@ import su.levenetc.android.textsurface.contants.Pivot;
 /**
  * Created by Eugene Levenetc.
  */
-public class CheckRotation3D {
+public class Rotation3DSample {
 	public static void play(TextSurface textSurface) {
 		Text textA = TextBuilder.create("How are you?").setPosition(Align.SURFACE_CENTER).build();
 		Text textB = TextBuilder.create("I'm fine! And you?").setPosition(Align.SURFACE_CENTER, textA).build();

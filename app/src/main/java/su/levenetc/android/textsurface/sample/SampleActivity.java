@@ -45,16 +45,7 @@ public class SampleActivity extends AppCompatActivity {
 	}
 
 	private void show() {
-
 		textSurface.reset();
-
-//		AlignSample.play(textSurface);
-//		SurfaceTransCheck.play(textSurface);
-//		SurfaceScaleCheck.play(textSurface);
-//		SlideCheck.play(textSurface);
-//		CheckRotation3D.play(textSurface);
-//		CheckShapeReveal.play(textSurface);
-//		ColorSample.play(textSurface);
 		CookieThumperSample.play(textSurface, getAssets());
 	}
 

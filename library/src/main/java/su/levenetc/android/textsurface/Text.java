@@ -9,6 +9,8 @@ import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
+import su.levenetc.android.textsurface.common.Position;
+import su.levenetc.android.textsurface.common.ScaleValue;
 import su.levenetc.android.textsurface.interfaces.ITextEffect;
 import su.levenetc.android.textsurface.utils.Utils;
 

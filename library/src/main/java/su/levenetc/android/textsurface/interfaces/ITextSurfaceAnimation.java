@@ -11,6 +11,6 @@ public interface ITextSurfaceAnimation extends ISurfaceAnimation {
 
 	void setInitValues(@NonNull Text text);
 
-	@NonNull Text getText();
+	Text getText();
 
 }

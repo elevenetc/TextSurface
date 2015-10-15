@@ -2,7 +2,6 @@ package su.levenetc.android.textsurface;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -11,6 +10,7 @@ import java.util.LinkedList;
 import java.util.TreeSet;
 
 import su.levenetc.android.textsurface.animations.AnimationsSet;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.interfaces.ICameraAnimation;
 import su.levenetc.android.textsurface.interfaces.ISet;
 import su.levenetc.android.textsurface.interfaces.ISurfaceAnimation;

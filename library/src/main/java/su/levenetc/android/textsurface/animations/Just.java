@@ -2,7 +2,7 @@ package su.levenetc.android.textsurface.animations;
 
 import android.support.annotation.Nullable;
 
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.interfaces.IEndListener;
 

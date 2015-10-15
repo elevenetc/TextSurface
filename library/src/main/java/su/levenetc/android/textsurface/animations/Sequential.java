@@ -1,6 +1,6 @@
 package su.levenetc.android.textsurface.animations;
 
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.interfaces.ISurfaceAnimation;
 
 /**

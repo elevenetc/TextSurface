@@ -3,6 +3,8 @@ package su.levenetc.android.textsurface;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 
+import su.levenetc.android.textsurface.common.ScaleValue;
+
 /**
  * Created by Eugene Levenetc.
  */

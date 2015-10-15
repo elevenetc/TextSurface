@@ -7,6 +7,7 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.TypedValue;
 
+import su.levenetc.android.textsurface.common.Position;
 import su.levenetc.android.textsurface.contants.Pivot;
 
 /**

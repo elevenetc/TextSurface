@@ -1,9 +1,9 @@
 package su.levenetc.android.textsurface.sample.checks;
 
-import su.levenetc.android.textsurface.Align;
+import su.levenetc.android.textsurface.contants.Align;
 import su.levenetc.android.textsurface.animations.AnimationsSet;
 import su.levenetc.android.textsurface.contants.Pivot;
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextBuilder;
 import su.levenetc.android.textsurface.TextSurface;
@@ -13,7 +13,7 @@ import su.levenetc.android.textsurface.animations.TransSurface;
 /**
  * Created by Eugene Levenetc.
  */
-public class SurfaceTransCheck {
+public class SurfaceTransSample {
 	public static void play(TextSurface textSurface) {
 		Text textA = TextBuilder.create("TextA").setPosition(Align.SURFACE_CENTER).build();
 		Text textB = TextBuilder.create("TextB").setPosition(Align.RIGHT_OF | Align.BOTTOM_OF, textA).build();

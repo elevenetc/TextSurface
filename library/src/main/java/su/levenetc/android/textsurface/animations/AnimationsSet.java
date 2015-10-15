@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import su.levenetc.android.textsurface.Debug;
-import su.levenetc.android.textsurface.TYPE;
+import su.levenetc.android.textsurface.contants.TYPE;
 import su.levenetc.android.textsurface.TextSurface;
 import su.levenetc.android.textsurface.interfaces.IEndListener;
 import su.levenetc.android.textsurface.interfaces.ISet;
