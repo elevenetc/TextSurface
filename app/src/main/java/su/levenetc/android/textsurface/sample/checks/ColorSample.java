@@ -17,7 +17,7 @@ public class ColorSample {
 	public static void play(TextSurface textSurface) {
 
 		Text textA = TextBuilder
-				.create("Now why you loer en kyk gelyk?")
+				.create("Color sample!")
 				.setPosition(Align.SURFACE_CENTER)
 				.setSize(100)
 				.setAlpha(0)

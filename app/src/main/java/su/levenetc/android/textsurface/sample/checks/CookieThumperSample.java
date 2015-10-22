@@ -37,7 +37,7 @@ public class CookieThumperSample {
 		paint.setTypeface(robotoBlack);
 
 		Text textDaai = TextBuilder
-				.create("Daai")
+				.create("你好")
 				.setPaint(paint)
 				.setSize(64)
 				.setAlpha(0)
@@ -45,7 +45,7 @@ public class CookieThumperSample {
 				.setPosition(Align.SURFACE_CENTER).build();
 
 		Text textBraAnies = TextBuilder
-				.create("bra Anies")
+				.create("世界")
 				.setPaint(paint)
 				.setSize(44)
 				.setAlpha(0)
@@ -53,7 +53,7 @@ public class CookieThumperSample {
 				.setPosition(Align.BOTTOM_OF, textDaai).build();
 
 		Text textFokkenGamBra = TextBuilder
-				.create(" hy's n fokken gam bra.")
+				.create("hello")
 				.setPaint(paint)
 				.setSize(44)
 				.setAlpha(0)
@@ -61,7 +61,7 @@ public class CookieThumperSample {
 				.setPosition(Align.RIGHT_OF, textBraAnies).build();
 
 		Text textHaai = TextBuilder
-				.create("Haai!!")
+				.create("world！")
 				.setPaint(paint)
 				.setSize(74)
 				.setAlpha(0)
