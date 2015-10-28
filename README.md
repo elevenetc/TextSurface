@@ -47,6 +47,12 @@ There're two basic classes which you could extend to add custom animation:
 - [`AbstractSurfaceAnimation.java`](library/src/main/java/su/levenetc/android/textsurface/animations/AbstractSurfaceAnimation.java) to animate basic parameters like `alpha`, `translation`, `scale` and others. (See [`Alpha.java`](library/src/main/java/su/levenetc/android/textsurface/animations/Alpha.java) or [`ChangeColor.java`](library/src/main/java/su/levenetc/android/textsurface/animations/ChangeColor.java))
 - [`ITextEffect.java`](library/src/main/java/su/levenetc/android/textsurface/interfaces/ITextEffect.java) interface which could be used for more complex animations. (See [`Rotate3D.java`](library/src/main/java/su/levenetc/android/textsurface/animations/Rotate3D.java) or [`ShapeReveal.java`](library/src/main/java/su/levenetc/android/textsurface/animations/ShapeReveal.java))
 
+### Proguard configuration
+The framework is based on standard android animation classes which uses `reflection` extensively. To avoid obfuscation you need to exclude classes of the framework:
+```
+-keep class su.levenetc.android.textsurface.** { *; }
+```
+
 ### Download
 ```Groovy
 repositories {
