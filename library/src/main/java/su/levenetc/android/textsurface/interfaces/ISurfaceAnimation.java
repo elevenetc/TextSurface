@@ -17,4 +17,7 @@ public interface ISurfaceAnimation {
 	void setTextSurface(@NonNull TextSurface textSurface);
 
 	long getDuration();
+
+	void cancel();
+
 }

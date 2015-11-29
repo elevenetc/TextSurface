@@ -28,6 +28,7 @@ public class AnimationsSet implements IEndListener, ISet {
 	private ISurfaceAnimation lastAnimation;//type == PARALLEL
 	private int index;
 	private IEndListener listener;
+	private boolean canceled;
 	private static final DurationComparator DURATION_COMPARATOR = new DurationComparator();
 
 	public AnimationsSet(TYPE type, ISurfaceAnimation... animations) {
@@ -37,6 +38,11 @@ public class AnimationsSet implements IEndListener, ISet {
 
 	@Override public void onAnimationEnd(ISurfaceAnimation animation) {
 		if (Debug.ENABLED) Log.i("endAnimation", animation.toString());
+
+		if (canceled) {
+			finalizeAnimation();
+			return;
+		}
 
 		if (type == TYPE.SEQUENTIAL) {
 			if (index < animations.size()) {
@@ -60,6 +66,8 @@ public class AnimationsSet implements IEndListener, ISet {
 
 	@Override public void start(IEndListener listener) {
 		this.listener = listener;
+		this.index = 0;
+		this.canceled = false;
 
 		if (type == TYPE.SEQUENTIAL) {
 			setCurrentAnimation(animations.get(index++));
@@ -101,6 +109,13 @@ public class AnimationsSet implements IEndListener, ISet {
 
 	@Override public long getDuration() {
 		return 0;
+	}
+
+	@Override public void cancel() {
+		canceled = true;
+		if (currentAnimation != null) {
+			currentAnimation.cancel();
+		}
 	}
 
 	@Override public LinkedList<ISurfaceAnimation> getAnimations() {

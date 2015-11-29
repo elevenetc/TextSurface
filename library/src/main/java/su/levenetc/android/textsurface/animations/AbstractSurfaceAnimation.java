@@ -47,6 +47,10 @@ public class AbstractSurfaceAnimation implements ITextSurfaceAnimation, ValueAni
 		return duration;
 	}
 
+	@Override public void cancel() {
+
+	}
+
 	@Override public void onAnimationUpdate(ValueAnimator animation) {
 		textSurface.invalidate();
 	}

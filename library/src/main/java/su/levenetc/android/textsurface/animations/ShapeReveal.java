@@ -1,5 +1,6 @@
 package su.levenetc.android.textsurface.animations;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -24,6 +25,7 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 	private TextSurface textSurface;
 	private IRevealShape revealShape;
 	private boolean hideOnEnd;
+	private Animator animator;
 
 	public static ShapeReveal create(Text text, int duration, IRevealShape revealShape, boolean hideOnEnd) {
 		return new ShapeReveal(text, duration, revealShape, hideOnEnd);
@@ -66,7 +68,10 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 			}
 		});
 		animator.setDuration(duration);
-		animator.start();
+
+		this.animator = animator;
+		this.animator.start();
+
 	}
 
 	@Override public void setTextSurface(@NonNull TextSurface textSurface) {
@@ -76,6 +81,13 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 
 	@Override public long getDuration() {
 		return 0;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	@Override public void onAnimationUpdate(ValueAnimator animation) {
