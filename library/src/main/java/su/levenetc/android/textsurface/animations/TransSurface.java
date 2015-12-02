@@ -1,6 +1,5 @@
 package su.levenetc.android.textsurface.animations;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -30,7 +29,7 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 	private int pivot;
 	private TextSurface textSurface;
 	private SurfaceCamera camera;
-	private Animator animator;
+	private ObjectAnimator animator;
 
 	public static TransSurface toCenter(Text textPivot, int duration){
 		return new TransSurface(duration, textPivot, Pivot.CENTER);
@@ -78,14 +77,12 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 		PropertyValuesHolder dxHolder = PropertyValuesHolder.ofFloat("transX", fromX, toX);
 		PropertyValuesHolder dyHolder = PropertyValuesHolder.ofFloat("transY", fromY, toY);
 
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(camera, dxHolder, dyHolder);
+		animator = ObjectAnimator.ofPropertyValuesHolder(camera, dxHolder, dyHolder);
 		animator.setInterpolator(new FastOutSlowInInterpolator());
 		Utils.addEndListener(this, animator, listener);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
-
-		this.animator = animator;
-		this.animator.start();
+		animator.start();
 	}
 
 	private void debugTranslation(float fromX, float fromY, float toX, float toY) {

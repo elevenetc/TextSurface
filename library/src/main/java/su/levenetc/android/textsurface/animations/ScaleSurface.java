@@ -28,7 +28,7 @@ public class ScaleSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 	private int fit = -1;
 	private int pivot;
 	private float toScale;
-	private Animator animator;
+	private ObjectAnimator animator;
 
 	public ScaleSurface(int duration, Text textPivot, int pivot, float toScale) {
 		this.duration = duration;
@@ -71,14 +71,12 @@ public class ScaleSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 		PropertyValuesHolder pivotXHolder = PropertyValuesHolder.ofFloat("scalePivotX", camera.getScalePivotX(), pivotX);
 		PropertyValuesHolder pivotYHolder = PropertyValuesHolder.ofFloat("scalePivotY", camera.getScalePivotY(), pivotY);
 
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(camera, scaleHolder, pivotXHolder, pivotYHolder);
+		animator = ObjectAnimator.ofPropertyValuesHolder(camera, scaleHolder, pivotXHolder, pivotYHolder);
 		animator.setInterpolator(new FastOutSlowInInterpolator());
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
 		Utils.addEndListener(this, animator, listener);
-
-		this.animator = animator;
-		this.animator.start();
+		animator.start();
 	}
 
 	@Override public void setTextSurface(@NonNull TextSurface textSurface) {

@@ -25,7 +25,7 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 	private TextSurface textSurface;
 	private IRevealShape revealShape;
 	private boolean hideOnEnd;
-	private Animator animator;
+	private ValueAnimator animator;
 
 	public static ShapeReveal create(Text text, int duration, IRevealShape revealShape, boolean hideOnEnd) {
 		return new ShapeReveal(text, duration, revealShape, hideOnEnd);
@@ -58,7 +58,7 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 	@Override public void start(@Nullable final IEndListener listener) {
 
 		text.setAlpha(255);
-		ValueAnimator animator = revealShape.getAnimator();
+		animator = revealShape.getAnimator();
 		animator.setInterpolator(new FastOutSlowInInterpolator());
 		Utils.addEndListener(this, animator, new IEndListener() {
 			@Override public void onAnimationEnd(ISurfaceAnimation animation) {
@@ -68,9 +68,7 @@ public class ShapeReveal implements ITextEffect, ValueAnimator.AnimatorUpdateLis
 			}
 		});
 		animator.setDuration(duration);
-
-		this.animator = animator;
-		this.animator.start();
+		animator.start();
 
 	}
 

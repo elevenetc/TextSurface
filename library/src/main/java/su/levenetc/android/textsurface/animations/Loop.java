@@ -8,27 +8,31 @@ import su.levenetc.android.textsurface.interfaces.ISurfaceAnimation;
  */
 public class Loop extends Sequential {
 
-  private final IEndListener restartListener = new IEndListener() {
-    @Override public void onAnimationEnd(ISurfaceAnimation animation) {
-      if (canceled) {
-        if (listener != null) listener.onAnimationEnd(Loop.this);
-      } else {
-        Loop.super.start(restartListener);
-      }
-    }
-  };
+	private final IEndListener restartListener = new IEndListener() {
+		@Override public void onAnimationEnd(ISurfaceAnimation animation) {
+			if (canceled) {
+				if (endListener != null) endListener.onAnimationEnd(Loop.this);
+			} else {
+				Loop.super.start(restartListener);
+			}
+		}
+	};
 
-  private IEndListener listener;
-  private boolean canceled;
+	private IEndListener endListener;
+	private boolean canceled;
 
-  @Override public void start(IEndListener listener) {
-    this.listener = listener;
-    this.canceled = false;
-    super.start(restartListener);
-  }
+	public Loop(ISurfaceAnimation... animations) {
+		super(animations);
+	}
 
-  @Override public void cancel() {
-    canceled = true;
-    super.cancel();
-  }
+	@Override public void start(IEndListener listener) {
+		endListener = listener;
+		canceled = false;
+		super.start(restartListener);
+	}
+
+	@Override public void cancel() {
+		canceled = true;
+		super.cancel();
+	}
 }

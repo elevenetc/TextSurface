@@ -20,7 +20,7 @@ public class Delay extends AbstractSurfaceAnimation {
 	}
 
 	@Override public void start(@Nullable final IEndListener listener) {
-		this.action = new Runnable() {
+		action = new Runnable() {
 			@Override public void run() {
 				if (listener != null) listener.onAnimationEnd(Delay.this);
 			}

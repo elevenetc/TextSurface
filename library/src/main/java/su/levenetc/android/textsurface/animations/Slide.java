@@ -1,6 +1,5 @@
 package su.levenetc.android.textsurface.animations;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -31,7 +30,7 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 	private float yOffset;
 	private TextSurface textSurface;
 	private boolean toShow;
-	private Animator animator;
+	private ObjectAnimator animator;
 
 	public static Slide showFrom(int side, Text text, int duration) {
 		return new Slide(side, text, duration, true);
@@ -113,8 +112,6 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 			vHolder = PropertyValuesHolder.ofFloat("yOffset", fromY, toY);
 		}
 
-		ObjectAnimator animator;
-
 		if (hHolder != null && vHolder != null) {
 			animator = ObjectAnimator.ofPropertyValuesHolder(this, hHolder, vHolder);
 		} else if (hHolder != null) {
@@ -133,9 +130,7 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 		});
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
-
-		this.animator = animator;
-		this.animator.start();
+		animator.start();
 	}
 
 	@Override public void setTextSurface(@NonNull TextSurface textSurface) {

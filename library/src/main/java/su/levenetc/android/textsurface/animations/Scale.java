@@ -24,7 +24,7 @@ public class Scale implements ITextSurfaceAnimation, ValueAnimator.AnimatorUpdat
 	private final int pivot;
 	private Text text;
 	private TextSurface textSurface;
-	private Animator animator;
+	private ObjectAnimator animator;
 
 	public Scale(Text text, int duration, float from, float to, int pivot) {
 		this.text = text;
@@ -50,13 +50,11 @@ public class Scale implements ITextSurfaceAnimation, ValueAnimator.AnimatorUpdat
 		text.setScalePivot(pivot, pivot);
 		PropertyValuesHolder sX = PropertyValuesHolder.ofFloat("scaleX", from, to);
 		PropertyValuesHolder sY = PropertyValuesHolder.ofFloat("scaleY", from, to);
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(text, sX, sY);
+		animator = ObjectAnimator.ofPropertyValuesHolder(text, sX, sY);
 		Utils.addEndListener(this, animator, listener);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
-
-		this.animator = animator;
-		this.animator.start();
+		animator.start();
 	}
 
 	@Override public void setTextSurface(@NonNull TextSurface textSurface) {

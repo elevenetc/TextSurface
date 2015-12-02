@@ -66,8 +66,8 @@ public class AnimationsSet implements IEndListener, ISet {
 
 	@Override public void start(IEndListener listener) {
 		this.listener = listener;
-		this.index = 0;
-		this.canceled = false;
+		index = 0;
+		canceled = false;
 
 		if (type == TYPE.SEQUENTIAL) {
 			setCurrentAnimation(animations.get(index++));
@@ -76,11 +76,7 @@ public class AnimationsSet implements IEndListener, ISet {
 			Collections.sort(animations, DURATION_COMPARATOR);
 			lastAnimation = animations.getLast();
 
-			Iterator<ISurfaceAnimation> iterator = animations.iterator();
-			while (iterator.hasNext()) {
-				setCurrentAnimation(iterator.next());
-				iterator.remove();
-			}
+			for (ISurfaceAnimation animation : animations) setCurrentAnimation(animation);
 		}
 	}
 
@@ -113,8 +109,12 @@ public class AnimationsSet implements IEndListener, ISet {
 
 	@Override public void cancel() {
 		canceled = true;
-		if (currentAnimation != null) {
-			currentAnimation.cancel();
+		if (type == TYPE.SEQUENTIAL) {
+			if (currentAnimation != null) {
+				currentAnimation.cancel();
+			}
+		} else {
+			for (ISurfaceAnimation animation : animations) animation.cancel();
 		}
 	}
 

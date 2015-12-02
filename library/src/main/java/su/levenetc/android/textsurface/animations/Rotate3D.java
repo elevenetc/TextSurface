@@ -41,7 +41,7 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 	private int direction;
 	private int axis;
 	private boolean show;
-	private Animator animator;
+	private ObjectAnimator animator;
 
 	public static Rotate3D showFromSide(Text text, int duration, int pivot) {
 		return new Rotate3D(text, duration, pivot, 0, 0, true);
@@ -109,7 +109,6 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 
 
 		PropertyValuesHolder valHolder = null;
-		ObjectAnimator animator;
 
 		int fromDegree;
 		int toDegree;
@@ -173,9 +172,7 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 			});
 			animator.setDuration(duration);
 			animator.addUpdateListener(this);
-
-			this.animator = animator;
-			this.animator.start();
+			animator.start();
 
 		} else {
 			throw new RuntimeException(getClass().getSuperclass() + " was not configured properly. Pivot:" + pivot);
