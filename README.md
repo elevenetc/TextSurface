@@ -61,7 +61,7 @@ repositories {
 //...
 dependencies {
     //...
-    compile 'com.github.elevenetc:textsurface:0.9.0'
+    compile 'com.github.elevenetc:textsurface:0.9.1'
 }
 ```
 ### Licence
