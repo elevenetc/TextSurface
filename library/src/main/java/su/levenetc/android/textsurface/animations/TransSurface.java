@@ -29,6 +29,7 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 	private int pivot;
 	private TextSurface textSurface;
 	private SurfaceCamera camera;
+	private ObjectAnimator animator;
 
 	public static TransSurface toCenter(Text textPivot, int duration){
 		return new TransSurface(duration, textPivot, Pivot.CENTER);
@@ -76,7 +77,7 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 		PropertyValuesHolder dxHolder = PropertyValuesHolder.ofFloat("transX", fromX, toX);
 		PropertyValuesHolder dyHolder = PropertyValuesHolder.ofFloat("transY", fromY, toY);
 
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(camera, dxHolder, dyHolder);
+		animator = ObjectAnimator.ofPropertyValuesHolder(camera, dxHolder, dyHolder);
 		animator.setInterpolator(new FastOutSlowInInterpolator());
 		Utils.addEndListener(this, animator, listener);
 		animator.setDuration(duration);
@@ -95,6 +96,13 @@ public class TransSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	@Override public void onAnimationUpdate(ValueAnimator animation) {

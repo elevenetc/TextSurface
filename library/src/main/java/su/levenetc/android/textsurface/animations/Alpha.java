@@ -15,6 +15,7 @@ public class Alpha extends AbstractSurfaceAnimation {
 
 	private int to;
 	private int from;
+	private ValueAnimator animator;
 
 	public static Alpha hide(Text text, int duration) {
 		return new Alpha(text, duration, 255, 0);
@@ -31,7 +32,7 @@ public class Alpha extends AbstractSurfaceAnimation {
 	}
 
 	@Override public void start(@Nullable final IEndListener listener) {
-		ValueAnimator animator = ValueAnimator.ofInt(from, to);
+		animator = ValueAnimator.ofInt(from, to);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
 
@@ -47,5 +48,12 @@ public class Alpha extends AbstractSurfaceAnimation {
 	@Override public void onAnimationUpdate(ValueAnimator animation) {
 		super.onAnimationUpdate(animation);
 		text.setAlpha((int) animation.getAnimatedValue());
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 }

@@ -19,6 +19,7 @@ public class ChangeColor extends AbstractSurfaceAnimation {
 	final float[] fromTriplet = new float[3];
 	final float[] toTriplet = new float[3];
 	final float[] hsv = new float[3];
+	private ValueAnimator animator;
 
 	public static ChangeColor fromTo(Text text, int duration, int from, int to) {
 		return new ChangeColor(text, duration, from, to);
@@ -41,7 +42,7 @@ public class ChangeColor extends AbstractSurfaceAnimation {
 		Color.colorToHSV(from, fromTriplet);
 		Color.colorToHSV(to, toTriplet);
 
-		ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+		animator = ValueAnimator.ofFloat(0, 1);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
 
@@ -62,4 +63,12 @@ public class ChangeColor extends AbstractSurfaceAnimation {
 		text.getPaint().setColor(Color.HSVToColor(hsv));
 		super.onAnimationUpdate(animation);
 	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
+	}
+
 }

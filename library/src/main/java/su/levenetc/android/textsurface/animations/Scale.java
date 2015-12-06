@@ -1,5 +1,6 @@
 package su.levenetc.android.textsurface.animations;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -23,6 +24,7 @@ public class Scale implements ITextSurfaceAnimation, ValueAnimator.AnimatorUpdat
 	private final int pivot;
 	private Text text;
 	private TextSurface textSurface;
+	private ObjectAnimator animator;
 
 	public Scale(Text text, int duration, float from, float to, int pivot) {
 		this.text = text;
@@ -48,7 +50,7 @@ public class Scale implements ITextSurfaceAnimation, ValueAnimator.AnimatorUpdat
 		text.setScalePivot(pivot, pivot);
 		PropertyValuesHolder sX = PropertyValuesHolder.ofFloat("scaleX", from, to);
 		PropertyValuesHolder sY = PropertyValuesHolder.ofFloat("scaleY", from, to);
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(text, sX, sY);
+		animator = ObjectAnimator.ofPropertyValuesHolder(text, sX, sY);
 		Utils.addEndListener(this, animator, listener);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
@@ -61,6 +63,13 @@ public class Scale implements ITextSurfaceAnimation, ValueAnimator.AnimatorUpdat
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	@Override public void onAnimationUpdate(ValueAnimator animation) {

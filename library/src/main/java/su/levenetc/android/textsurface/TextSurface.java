@@ -23,6 +23,7 @@ public class TextSurface extends FrameLayout {
 
 	private TreeSet<Text> textsTree = new TreeSet<>();
 	private SurfaceCamera camera = new SurfaceCamera();
+	private ISurfaceAnimation currentAnimation = null;
 
 	public TextSurface(Context context) {
 		super(context);
@@ -54,7 +55,8 @@ public class TextSurface extends FrameLayout {
 		configAnimations(animation);
 		animation.setTextSurface(this);
 		layout();
-		animation.start(null);
+		currentAnimation = animation;
+		currentAnimation.start(null);
 	}
 
 	private void layout() {
@@ -87,6 +89,10 @@ public class TextSurface extends FrameLayout {
 	}
 
 	public void reset() {
+		if (currentAnimation != null) {
+			currentAnimation.cancel();
+			currentAnimation = null;
+		}
 		textsTree.clear();
 		camera.reset();
 		invalidate();

@@ -1,5 +1,6 @@
 package su.levenetc.android.textsurface.animations;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -40,6 +41,7 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 	private int direction;
 	private int axis;
 	private boolean show;
+	private ObjectAnimator animator;
 
 	public static Rotate3D showFromSide(Text text, int duration, int pivot) {
 		return new Rotate3D(text, duration, pivot, 0, 0, true);
@@ -107,7 +109,6 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 
 
 		PropertyValuesHolder valHolder = null;
-		ObjectAnimator animator;
 
 		int fromDegree;
 		int toDegree;
@@ -172,6 +173,7 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 			animator.setDuration(duration);
 			animator.addUpdateListener(this);
 			animator.start();
+
 		} else {
 			throw new RuntimeException(getClass().getSuperclass() + " was not configured properly. Pivot:" + pivot);
 		}
@@ -185,6 +187,13 @@ public class Rotate3D implements ITextEffect, ValueAnimator.AnimatorUpdateListen
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	public void setRotationX(float rotationX) {

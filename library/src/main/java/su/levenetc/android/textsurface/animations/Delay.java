@@ -13,16 +13,26 @@ public class Delay extends AbstractSurfaceAnimation {
 		return new Delay(duration);
 	}
 
+	private Runnable action = null;
+
 	public Delay(int duration) {
 		super(null, duration);
 	}
 
 	@Override public void start(@Nullable final IEndListener listener) {
-		textSurface.postDelayed(new Runnable() {
+		action = new Runnable() {
 			@Override public void run() {
 				if (listener != null) listener.onAnimationEnd(Delay.this);
 			}
-		}, duration);
+		};
+		textSurface.postDelayed(action, duration);
+	}
+
+	@Override public void cancel() {
+		if (action != null) {
+			textSurface.removeCallbacks(action);
+			action = null;
+		}
 	}
 
 	@Override public String toString() {

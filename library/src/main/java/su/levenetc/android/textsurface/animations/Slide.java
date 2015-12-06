@@ -30,6 +30,7 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 	private float yOffset;
 	private TextSurface textSurface;
 	private boolean toShow;
+	private ObjectAnimator animator;
 
 	public static Slide showFrom(int side, Text text, int duration) {
 		return new Slide(side, text, duration, true);
@@ -111,8 +112,6 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 			vHolder = PropertyValuesHolder.ofFloat("yOffset", fromY, toY);
 		}
 
-		ObjectAnimator animator;
-
 		if (hHolder != null && vHolder != null) {
 			animator = ObjectAnimator.ofPropertyValuesHolder(this, hHolder, vHolder);
 		} else if (hHolder != null) {
@@ -140,6 +139,13 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	@Override public void apply(Canvas canvas, String textValue, float x, float y, Paint paint) {

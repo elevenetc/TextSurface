@@ -28,6 +28,7 @@ public class CamRot implements ICameraAnimation, ValueAnimator.AnimatorUpdateLis
 	private SurfaceCamera camera;
 	private Text textPivot;
 	private int pivotAlign;
+	private ObjectAnimator animator;
 
 	public CamRot(int duration, float rotationDelta) {
 		this.duration = duration;
@@ -57,7 +58,7 @@ public class CamRot implements ICameraAnimation, ValueAnimator.AnimatorUpdateLis
 		setPivot();
 		float from = camera.getRotation();
 		float to = camera.getRotation() + rotationDelta;
-		ObjectAnimator animator = ObjectAnimator.ofFloat(camera, "rotation", from, to);
+		animator = ObjectAnimator.ofFloat(camera, "rotation", from, to);
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
 		animator.addListener(new AnimatorEndListener() {
@@ -65,6 +66,7 @@ public class CamRot implements ICameraAnimation, ValueAnimator.AnimatorUpdateLis
 				if (listener != null) listener.onAnimationEnd(CamRot.this);
 			}
 		});
+
 		animator.start();
 	}
 
@@ -136,6 +138,13 @@ public class CamRot implements ICameraAnimation, ValueAnimator.AnimatorUpdateLis
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+			animator = null;
+		}
 	}
 
 	@Override public void onAnimationUpdate(ValueAnimator animation) {

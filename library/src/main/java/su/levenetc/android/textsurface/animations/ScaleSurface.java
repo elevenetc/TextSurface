@@ -1,5 +1,6 @@
 package su.levenetc.android.textsurface.animations;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -27,6 +28,7 @@ public class ScaleSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 	private int fit = -1;
 	private int pivot;
 	private float toScale;
+	private ObjectAnimator animator;
 
 	public ScaleSurface(int duration, Text textPivot, int pivot, float toScale) {
 		this.duration = duration;
@@ -69,7 +71,7 @@ public class ScaleSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 		PropertyValuesHolder pivotXHolder = PropertyValuesHolder.ofFloat("scalePivotX", camera.getScalePivotX(), pivotX);
 		PropertyValuesHolder pivotYHolder = PropertyValuesHolder.ofFloat("scalePivotY", camera.getScalePivotY(), pivotY);
 
-		ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(camera, scaleHolder, pivotXHolder, pivotYHolder);
+		animator = ObjectAnimator.ofPropertyValuesHolder(camera, scaleHolder, pivotXHolder, pivotYHolder);
 		animator.setInterpolator(new FastOutSlowInInterpolator());
 		animator.setDuration(duration);
 		animator.addUpdateListener(this);
@@ -83,6 +85,12 @@ public class ScaleSurface implements ICameraAnimation, ValueAnimator.AnimatorUpd
 
 	@Override public long getDuration() {
 		return duration;
+	}
+
+	@Override public void cancel() {
+		if (animator != null && animator.isRunning()) {
+			animator.cancel();
+		}
 	}
 
 	@Override public void onAnimationUpdate(ValueAnimator animation) {
