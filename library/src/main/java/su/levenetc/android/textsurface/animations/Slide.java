@@ -6,9 +6,11 @@ import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Region;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.os.Build;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import su.levenetc.android.textsurface.Text;
 import su.levenetc.android.textsurface.TextSurface;
@@ -154,7 +156,12 @@ public class Slide implements ITextEffect, ValueAnimator.AnimatorUpdateListener 
 		float height = this.text.getHeight();
 
 		//canvas.save();
-		canvas.clipRect(x, y - height, width, 0, Region.Op.REPLACE);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			canvas.clipRect(x, y - height, width, 0);
+		}else{
+			canvas.clipRect(x, y - height, width, 0, Region.Op.REPLACE);
+		}
+
 		canvas.translate(xOffset, yOffset - text.getFontDescent());
 		//canvas.drawText(textValue, x, y, paint);
 		//canvas.restore();
