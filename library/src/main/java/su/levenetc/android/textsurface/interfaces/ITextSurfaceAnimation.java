@@ -1,6 +1,6 @@
 package su.levenetc.android.textsurface.interfaces;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import su.levenetc.android.textsurface.Text;
 
