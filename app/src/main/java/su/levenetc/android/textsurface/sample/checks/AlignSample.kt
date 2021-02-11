@@ -1,82 +1,67 @@
-package su.levenetc.android.textsurface.sample.checks;
+package su.levenetc.android.textsurface.sample.checks
 
-import su.levenetc.android.textsurface.contants.Align;
-import su.levenetc.android.textsurface.contants.TYPE;
-import su.levenetc.android.textsurface.Text;
-import su.levenetc.android.textsurface.TextBuilder;
-import su.levenetc.android.textsurface.TextSurface;
-import su.levenetc.android.textsurface.animations.Alpha;
+import su.levenetc.android.textsurface.TextBuilder.Companion.create
+import su.levenetc.android.textsurface.TextSurface
+import su.levenetc.android.textsurface.animations.Alpha.Companion.show
+import su.levenetc.android.textsurface.contants.Align
+import su.levenetc.android.textsurface.contants.TYPE
 
 /**
  * Created by Eugene Levenetc.
  */
-public class AlignSample {
-	public static void play(TextSurface textSurface) {
+object AlignSample {
+    fun play(textSurface: TextSurface) {
+        val textCenter = create("Center")
+                .setPosition(Align.SURFACE_CENTER)
+                .setPadding(25f, 25f, 25f, 25f)
+                .build()
 
-		Text textCenter = TextBuilder.create("Center")
-				.setPosition(Align.SURFACE_CENTER)
-				.setPadding(25, 25, 25, 25)
-				.build();
+        //
+        val textLeft = create("L")
+                .setPadding(20f, 20f, 20f, 20f)
+                .setPosition(Align.LEFT_OF or Align.CENTER_OF, textCenter)
+                .build()
+        val textRight = create("R")
+                .setPadding(20f, 20f, 20f, 20f)
+                .setPosition(Align.RIGHT_OF or Align.CENTER_OF, textCenter)
+                .build()
+        val textTop = create("T")
+                .setPosition(Align.TOP_OF or Align.CENTER_OF, textCenter)
+                .build()
+        val textBottom = create("B")
+                .setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textCenter)
+                .build()
 
-		//
+        //
+        val textBottomBottom = create("BB")
+                .setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textBottom)
+                .build()
 
-		Text textLeft = TextBuilder.create("L")
-				.setPadding(20, 20, 20, 20)
-				.setPosition(Align.LEFT_OF | Align.CENTER_OF, textCenter)
-				.build();
-
-		Text textRight = TextBuilder.create("R")
-				.setPadding(20, 20, 20, 20)
-				.setPosition(Align.RIGHT_OF | Align.CENTER_OF, textCenter)
-				.build();
-
-		Text textTop = TextBuilder.create("T")
-				.setPosition(Align.TOP_OF | Align.CENTER_OF, textCenter)
-				.build();
-
-		Text textBottom = TextBuilder.create("B")
-				.setPosition(Align.BOTTOM_OF | Align.CENTER_OF, textCenter)
-				.build();
-
-		//
-
-		Text textBottomBottom = TextBuilder.create("BB")
-				.setPosition(Align.BOTTOM_OF | Align.CENTER_OF, textBottom)
-				.build();
-
-		//
-
-		Text textLeftTop = TextBuilder.create("LT")
-				.setPosition(Align.LEFT_OF | Align.TOP_OF, textCenter)
-				.build();
-
-		Text textRightTop = TextBuilder.create("RT")
-				.setPosition(Align.RIGHT_OF | Align.TOP_OF, textCenter)
-				.build();
-
-		Text textLeftBottom = TextBuilder.create("LB")
-				.setPosition(Align.LEFT_OF | Align.BOTTOM_OF, textCenter)
-				.build();
-
-		Text textRightBottom = TextBuilder.create("RB")
-				.setPosition(Align.BOTTOM_OF | Align.RIGHT_OF, textCenter)
-				.build();
-
-		final int duration = 125;
-
-		textSurface.play(TYPE.SEQUENTIAL,
-				Alpha.show(textCenter, duration),
-				Alpha.show(textRight, duration),
-				Alpha.show(textTop, duration),
-				Alpha.show(textLeft, duration),
-				Alpha.show(textBottom, duration),
-
-				Alpha.show(textLeftTop, duration),
-				Alpha.show(textLeftBottom, duration),
-				Alpha.show(textRightBottom, duration),
-				Alpha.show(textRightTop, duration),
-
-				Alpha.show(textBottomBottom, duration)
-		);
-	}
+        //
+        val textLeftTop = create("LT")
+                .setPosition(Align.LEFT_OF or Align.TOP_OF, textCenter)
+                .build()
+        val textRightTop = create("RT")
+                .setPosition(Align.RIGHT_OF or Align.TOP_OF, textCenter)
+                .build()
+        val textLeftBottom = create("LB")
+                .setPosition(Align.LEFT_OF or Align.BOTTOM_OF, textCenter)
+                .build()
+        val textRightBottom = create("RB")
+                .setPosition(Align.BOTTOM_OF or Align.RIGHT_OF, textCenter)
+                .build()
+        val duration = 125
+        textSurface.play(TYPE.SEQUENTIAL,
+                show(textCenter, duration.toLong()),
+                show(textRight, duration.toLong()),
+                show(textTop, duration.toLong()),
+                show(textLeft, duration.toLong()),
+                show(textBottom, duration.toLong()),
+                show(textLeftTop, duration.toLong()),
+                show(textLeftBottom, duration.toLong()),
+                show(textRightBottom, duration.toLong()),
+                show(textRightTop, duration.toLong()),
+                show(textBottomBottom, duration.toLong())
+        )
+    }
 }

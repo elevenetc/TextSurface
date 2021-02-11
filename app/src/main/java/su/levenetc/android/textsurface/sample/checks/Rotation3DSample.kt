@@ -1,39 +1,36 @@
-package su.levenetc.android.textsurface.sample.checks;
+package su.levenetc.android.textsurface.sample.checks
 
-import su.levenetc.android.textsurface.contants.Align;
-import su.levenetc.android.textsurface.animations.AnimationsSet;
-import su.levenetc.android.textsurface.contants.TYPE;
-import su.levenetc.android.textsurface.Text;
-import su.levenetc.android.textsurface.TextBuilder;
-import su.levenetc.android.textsurface.TextSurface;
-import su.levenetc.android.textsurface.animations.Rotate3D;
-import su.levenetc.android.textsurface.contants.Axis;
-import su.levenetc.android.textsurface.contants.Direction;
-import su.levenetc.android.textsurface.contants.Pivot;
+import su.levenetc.android.textsurface.TextBuilder.Companion.create
+import su.levenetc.android.textsurface.TextSurface
+import su.levenetc.android.textsurface.animations.AnimationsSet
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.hideFromCenter
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.hideFromSide
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.showFromCenter
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.showFromSide
+import su.levenetc.android.textsurface.contants.*
 
 /**
  * Created by Eugene Levenetc.
  */
-public class Rotation3DSample {
-	public static void play(TextSurface textSurface) {
-		Text textA = TextBuilder.create("How are you?").setPosition(Align.SURFACE_CENTER).build();
-		Text textB = TextBuilder.create("I'm fine! And you?").setPosition(Align.SURFACE_CENTER, textA).build();
-		Text textC = TextBuilder.create("Haaay!").setPosition(Align.SURFACE_CENTER, textB).build();
-		int duration = 2750;
-
-		textSurface.play(TYPE.SEQUENTIAL,
-				new AnimationsSet(TYPE.SEQUENTIAL,
-						Rotate3D.showFromCenter(textA, duration, Direction.CLOCK, Axis.X),
-						Rotate3D.hideFromCenter(textA, duration, Direction.CLOCK, Axis.Y)
-				),
-				new AnimationsSet(TYPE.SEQUENTIAL,
-						Rotate3D.showFromSide(textB, duration, Pivot.LEFT),
-						Rotate3D.hideFromSide(textB, duration, Pivot.RIGHT)
-				),
-				new AnimationsSet(TYPE.SEQUENTIAL,
-						Rotate3D.showFromSide(textC, duration, Pivot.TOP),
-						Rotate3D.hideFromSide(textC, duration, Pivot.BOTTOM)
-				)
-		);
-	}
+object Rotation3DSample {
+    fun play(textSurface: TextSurface) {
+        val textA = create("How are you?").setPosition(Align.SURFACE_CENTER).build()
+        val textB = create("I'm fine! And you?").setPosition(Align.SURFACE_CENTER, textA).build()
+        val textC = create("Haaay!").setPosition(Align.SURFACE_CENTER, textB).build()
+        val duration = 2750
+        textSurface.play(TYPE.SEQUENTIAL,
+                AnimationsSet(TYPE.SEQUENTIAL,
+                        showFromCenter(textA, duration.toLong(), Direction.CLOCK, Axis.X),
+                        hideFromCenter(textA, duration.toLong(), Direction.CLOCK, Axis.Y)
+                ),
+                AnimationsSet(TYPE.SEQUENTIAL,
+                        showFromSide(textB, duration.toLong(), Pivot.LEFT),
+                        hideFromSide(textB, duration.toLong(), Pivot.RIGHT)
+                ),
+                AnimationsSet(TYPE.SEQUENTIAL,
+                        showFromSide(textC, duration.toLong(), Pivot.TOP),
+                        hideFromSide(textC, duration.toLong(), Pivot.BOTTOM)
+                )
+        )
+    }
 }

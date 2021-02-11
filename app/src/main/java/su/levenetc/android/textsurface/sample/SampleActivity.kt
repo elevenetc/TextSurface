@@ -1,52 +1,42 @@
-package su.levenetc.android.textsurface.sample;
+package su.levenetc.android.textsurface.sample
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-
-import su.levenetc.android.textsurface.Debug;
-import su.levenetc.android.textsurface.TextSurface;
-import su.levenetc.android.textsurface.sample.checks.CookieThumperSample;
+import android.os.Bundle
+import android.view.View
+import android.widget.CheckBox
+import androidx.appcompat.app.AppCompatActivity
+import su.levenetc.android.textsurface.Debug
+import su.levenetc.android.textsurface.TextSurface
+import su.levenetc.android.textsurface.sample.checks.*
 
 /**
  * Created by Eugene Levenetc.
  */
-public class SampleActivity extends AppCompatActivity {
+class SampleActivity : AppCompatActivity() {
+    private lateinit var textSurface: TextSurface
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.sample_activity)
+        textSurface = findViewById<View>(R.id.text_surface) as TextSurface
+        textSurface!!.postDelayed({ show() }, 1000)
+        findViewById<View>(R.id.btn_refresh).setOnClickListener { show() }
+        val checkDebug = findViewById<View>(R.id.check_debug) as CheckBox
+        checkDebug.isChecked = Debug.ENABLED
+        checkDebug.setOnCheckedChangeListener { _, isChecked ->
+            Debug.ENABLED = isChecked
+            textSurface!!.invalidate()
+        }
+    }
 
-	private TextSurface textSurface;
-
-	@Override protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.sample_activity);
-		textSurface = (TextSurface) findViewById(R.id.text_surface);
-
-		textSurface.postDelayed(new Runnable() {
-			@Override public void run() {
-				show();
-			}
-		}, 1000);
-
-		findViewById(R.id.btn_refresh).setOnClickListener(new View.OnClickListener() {
-			@Override public void onClick(View v) {
-				show();
-			}
-		});
-
-		CheckBox checkDebug = (CheckBox) findViewById(R.id.check_debug);
-		checkDebug.setChecked(Debug.ENABLED);
-		checkDebug.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				Debug.ENABLED = isChecked;
-				textSurface.invalidate();
-			}
-		});
-	}
-
-	private void show() {
-		textSurface.reset();
-		CookieThumperSample.play(textSurface, getAssets());
-	}
-
+    private fun show() {
+        textSurface.reset()
+        CookieThumperSample.play(textSurface, assets)
+        //AlignSample.play(textSurface)
+        //Rotation3DSample.play(textSurface)
+        //ScaleTextSample.play(textSurface)
+        //ShapeRevealLoopSample.play(textSurface)
+        //ShapeRevealSample.play(textSurface)
+        //SlideSample.play(textSurface)
+        //SurfaceScaleSample.play(textSurface)
+        //SurfaceTransSample.play(textSurface)
+    }
 }

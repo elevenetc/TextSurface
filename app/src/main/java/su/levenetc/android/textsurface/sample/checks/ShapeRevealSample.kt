@@ -1,66 +1,58 @@
-package su.levenetc.android.textsurface.sample.checks;
+package su.levenetc.android.textsurface.sample.checks
 
-import su.levenetc.android.textsurface.contants.Align;
-import su.levenetc.android.textsurface.animations.AnimationsSet;
-import su.levenetc.android.textsurface.contants.TYPE;
-import su.levenetc.android.textsurface.Text;
-import su.levenetc.android.textsurface.TextBuilder;
-import su.levenetc.android.textsurface.TextSurface;
-import su.levenetc.android.textsurface.animations.Alpha;
-import su.levenetc.android.textsurface.animations.Circle;
-import su.levenetc.android.textsurface.animations.Delay;
-import su.levenetc.android.textsurface.animations.Rotate3D;
-import su.levenetc.android.textsurface.animations.ShapeReveal;
-import su.levenetc.android.textsurface.animations.SideCut;
-import su.levenetc.android.textsurface.animations.Slide;
-import su.levenetc.android.textsurface.animations.TransSurface;
-import su.levenetc.android.textsurface.contants.Axis;
-import su.levenetc.android.textsurface.contants.Direction;
-import su.levenetc.android.textsurface.contants.Pivot;
-import su.levenetc.android.textsurface.contants.Side;
+import su.levenetc.android.textsurface.TextBuilder.Companion.create
+import su.levenetc.android.textsurface.TextSurface
+import su.levenetc.android.textsurface.animations.Alpha.Companion.hide
+import su.levenetc.android.textsurface.animations.AnimationsSet
+import su.levenetc.android.textsurface.animations.reveal.Circle.Companion.show
+import su.levenetc.android.textsurface.animations.Delay.Companion.duration
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.showFromCenter
+import su.levenetc.android.textsurface.animations.Rotate3D.Companion.showFromSide
+import su.levenetc.android.textsurface.animations.reveal.ShapeReveal.Companion.create
+import su.levenetc.android.textsurface.animations.reveal.SideCut.Companion.hide
+import su.levenetc.android.textsurface.animations.reveal.SideCut.Companion.show
+import su.levenetc.android.textsurface.animations.Slide.Companion.showFrom
+import su.levenetc.android.textsurface.animations.TransSurface
+import su.levenetc.android.textsurface.contants.*
 
 /**
  * Created by Eugene Levenetc.
  */
-public class ShapeRevealSample {
-	public static void play(TextSurface textSurface) {
-
-		Text textA = TextBuilder.create("Now why you loer en kyk gelyk?").setPosition(Align.SURFACE_CENTER).build();
-		Text textB = TextBuilder.create("Is ek miskien van goud gemake?").setPosition(Align.BOTTOM_OF | Align.CENTER_OF, textA).build();
-		Text textC = TextBuilder.create("You want to fight, you come tonight.").setPosition(Align.BOTTOM_OF | Align.CENTER_OF, textB).build();
-		Text textD = TextBuilder.create("Ek moer jou sleg! So jy hardloop weg.").setPosition(Align.BOTTOM_OF | Align.CENTER_OF, textC).build();
-
-		final int flash = 1500;
-
-		textSurface.play(TYPE.SEQUENTIAL,
-				Rotate3D.showFromCenter(textA, 500, Direction.CLOCK, Axis.X),
-				new AnimationsSet(TYPE.PARALLEL,
-						ShapeReveal.create(textA, flash, SideCut.hide(Side.LEFT), false),
-						new AnimationsSet(TYPE.SEQUENTIAL, Delay.duration(flash / 4), ShapeReveal.create(textA, flash, SideCut.show(Side.LEFT), false))
-				),
-				new AnimationsSet(TYPE.PARALLEL,
-						Rotate3D.showFromSide(textB, 500, Pivot.TOP),
-						new TransSurface(500, textB, Pivot.CENTER)
-				),
-				Delay.duration(500),
-				new AnimationsSet(TYPE.PARALLEL,
-						Slide.showFrom(Side.TOP, textC, 500),
-						new TransSurface(1000, textC, Pivot.CENTER)
-				),
-				Delay.duration(500),
-				new AnimationsSet(TYPE.PARALLEL,
-						ShapeReveal.create(textD, 500, Circle.show(Side.CENTER, Direction.OUT), false),
-						new TransSurface(1500, textD, Pivot.CENTER)
-				),
-				Delay.duration(500),
-				new AnimationsSet(TYPE.PARALLEL,
-						new AnimationsSet(TYPE.PARALLEL, Alpha.hide(textD, 700), ShapeReveal.create(textD, 1000, SideCut.hide(Side.LEFT), true)),
-						new AnimationsSet(TYPE.SEQUENTIAL, Delay.duration(500), new AnimationsSet(TYPE.PARALLEL, Alpha.hide(textC, 700), ShapeReveal.create(textC, 1000, SideCut.hide(Side.LEFT), true))),
-						new AnimationsSet(TYPE.SEQUENTIAL, Delay.duration(1000), new AnimationsSet(TYPE.PARALLEL, Alpha.hide(textB, 700), ShapeReveal.create(textB, 1000, SideCut.hide(Side.LEFT), true))),
-						new AnimationsSet(TYPE.SEQUENTIAL, Delay.duration(1500), new AnimationsSet(TYPE.PARALLEL, Alpha.hide(textA, 700), ShapeReveal.create(textA, 1000, SideCut.hide(Side.LEFT), true))),
-						new TransSurface(4000, textA, Pivot.CENTER)
-				)
-
-		);
-	}
+object ShapeRevealSample {
+    fun play(textSurface: TextSurface) {
+        val textA = create("Now why you loer en kyk gelyk?").setPosition(Align.SURFACE_CENTER).build()
+        val textB = create("Is ek miskien van goud gemake?").setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textA).build()
+        val textC = create("You want to fight, you come tonight.").setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textB).build()
+        val textD = create("Ek moer jou sleg! So jy hardloop weg.").setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textC).build()
+        val flash = 1500
+        textSurface.play(TYPE.SEQUENTIAL,
+                showFromCenter(textA, 500, Direction.CLOCK, Axis.X),
+                AnimationsSet(TYPE.PARALLEL,
+                        create(textA, flash.toLong(), hide(Side.LEFT), false),
+                        AnimationsSet(TYPE.SEQUENTIAL, duration((flash / 4).toLong()), create(textA, flash.toLong(), show(Side.LEFT), false))
+                ),
+                AnimationsSet(TYPE.PARALLEL,
+                        showFromSide(textB, 500, Pivot.TOP),
+                        TransSurface(500, textB, Pivot.CENTER)
+                ),
+                duration(500),
+                AnimationsSet(TYPE.PARALLEL,
+                        showFrom(Side.TOP, textC, 500),
+                        TransSurface(1000, textC, Pivot.CENTER)
+                ),
+                duration(500),
+                AnimationsSet(TYPE.PARALLEL,
+                        create(textD, 500, show(Side.CENTER, Direction.OUT), false),
+                        TransSurface(1500, textD, Pivot.CENTER)
+                ),
+                duration(500),
+                AnimationsSet(TYPE.PARALLEL,
+                        AnimationsSet(TYPE.PARALLEL, hide(textD, 700), create(textD, 1000, hide(Side.LEFT), true)),
+                        AnimationsSet(TYPE.SEQUENTIAL, duration(500), AnimationsSet(TYPE.PARALLEL, hide(textC, 700), create(textC, 1000, hide(Side.LEFT), true))),
+                        AnimationsSet(TYPE.SEQUENTIAL, duration(1000), AnimationsSet(TYPE.PARALLEL, hide(textB, 700), create(textB, 1000, hide(Side.LEFT), true))),
+                        AnimationsSet(TYPE.SEQUENTIAL, duration(1500), AnimationsSet(TYPE.PARALLEL, hide(textA, 700), create(textA, 1000, hide(Side.LEFT), true))),
+                        TransSurface(4000, textA, Pivot.CENTER)
+                )
+        )
+    }
 }

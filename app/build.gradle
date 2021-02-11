@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 repositories {
     maven { url "https://jitpack.io" }
+    mavenCentral()
 }
 
 android {
@@ -28,4 +30,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation project(':library')
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
