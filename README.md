@@ -32,8 +32,8 @@ See full sample [`here`](app/src/main/java/su/levenetc/android/textsurface/sampl
   
 ### Adjusting animations
 
-- To play animations sequentially use [`Sequential.java`](library/src/main/java/su/levenetc/android/textsurface/animations/sets/Sequential.kt)
-- To play animations simultaneously use [`Parallel.java`](library/src/main/java/su/levenetc/android/textsurface/animations/sets/Parallel.kt)
+- To play animations sequentially use [`Sequential.kt`](library/src/main/java/su/levenetc/android/textsurface/animations/sets/Sequential.kt)
+- To play animations simultaneously use [`Parallel.kt`](library/src/main/java/su/levenetc/android/textsurface/animations/sets/Parallel.kt)
 - Animations/effects could be combined like this:
 
   ```Kotlin
