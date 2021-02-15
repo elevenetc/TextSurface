@@ -6,15 +6,13 @@ import android.graphics.Paint
 /**
  * Created by Eugene Levenetc.
  */
-object Debug {
-    @JvmField
+object TextSurfaceDebug {
+
     var ENABLED = false
 
-    @JvmField
     var RED_FILL: Paint = Paint()
     var RED_STROKE: Paint = Paint()
 
-    @JvmField
     var BLUE_STROKE: Paint = Paint()
     var YELLOW_STROKE: Paint = Paint()
     var GREEN_STROKE: Paint = Paint()
