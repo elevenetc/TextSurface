@@ -3,7 +3,7 @@ package su.levenetc.android.textsurface.sample.animations
 import su.levenetc.android.textsurface.Text
 import su.levenetc.android.textsurface.TextSurface
 import su.levenetc.android.textsurface.animations.colors.Alpha
-import su.levenetc.android.textsurface.contants.Align
+import su.levenetc.android.textsurface.constants.Align
 
 fun alignSample(textSurface: TextSurface) {
     val textCenter = Text.Builder("Center")

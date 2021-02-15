@@ -5,8 +5,8 @@ import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import su.levenetc.android.textsurface.Text
-import su.levenetc.android.textsurface.contants.Fit
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Fit
+import su.levenetc.android.textsurface.constants.Pivot
 import su.levenetc.android.textsurface.utils.setupAndStart
 
 /**

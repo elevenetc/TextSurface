@@ -3,8 +3,8 @@ package su.levenetc.android.textsurface.common
 import android.graphics.PointF
 import su.levenetc.android.textsurface.Text
 import su.levenetc.android.textsurface.TextSurface
-import su.levenetc.android.textsurface.contants.Align
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Align
+import su.levenetc.android.textsurface.constants.Pivot
 
 /**
  * Created by Eugene Levenetc.

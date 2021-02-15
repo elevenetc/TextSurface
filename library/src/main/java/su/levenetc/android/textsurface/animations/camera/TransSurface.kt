@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import su.levenetc.android.textsurface.Text
 import su.levenetc.android.textsurface.TextSurfaceDebug
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Pivot
 import su.levenetc.android.textsurface.utils.setupAndStart
 
 /**

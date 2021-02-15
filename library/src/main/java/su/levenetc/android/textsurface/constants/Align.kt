@@ -1,4 +1,4 @@
-package su.levenetc.android.textsurface.contants
+package su.levenetc.android.textsurface.constants
 
 /**
  * Created by Eugene Levenetc.

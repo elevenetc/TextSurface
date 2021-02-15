@@ -4,7 +4,7 @@ import android.graphics.*
 import su.levenetc.android.textsurface.animations.effects.TextEffect
 import su.levenetc.android.textsurface.common.Position
 import su.levenetc.android.textsurface.common.ScaleValue
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Pivot
 import su.levenetc.android.textsurface.utils.toEscapedString
 import su.levenetc.android.textsurface.utils.toSp
 import su.levenetc.android.textsurface.utils.verifiedRange

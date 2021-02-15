@@ -4,7 +4,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.graphics.PointF
 import su.levenetc.android.textsurface.Text
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Pivot
 import su.levenetc.android.textsurface.utils.setupAndStart
 import kotlin.math.ceil
 import kotlin.math.cos

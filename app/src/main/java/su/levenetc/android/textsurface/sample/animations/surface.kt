@@ -7,9 +7,9 @@ import su.levenetc.android.textsurface.animations.camera.TransSurface
 import su.levenetc.android.textsurface.animations.colors.Alpha
 import su.levenetc.android.textsurface.animations.generic.Delay
 import su.levenetc.android.textsurface.animations.sets.Parallel
-import su.levenetc.android.textsurface.contants.Align
-import su.levenetc.android.textsurface.contants.Fit
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Align
+import su.levenetc.android.textsurface.constants.Fit
+import su.levenetc.android.textsurface.constants.Pivot
 
 fun surfaceScaleSample(textSurface: TextSurface) {
     val textA = Text.Builder("How are you?").setPosition(Align.SURFACE_CENTER).build()

@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Region
 import su.levenetc.android.textsurface.TextSurfaceDebug
-import su.levenetc.android.textsurface.contants.Direction
-import su.levenetc.android.textsurface.contants.Side
+import su.levenetc.android.textsurface.constants.Direction
+import su.levenetc.android.textsurface.constants.Side
 import kotlin.math.sqrt
 
 /**

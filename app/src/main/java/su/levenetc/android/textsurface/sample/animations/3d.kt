@@ -4,9 +4,9 @@ import su.levenetc.android.textsurface.Text
 import su.levenetc.android.textsurface.TextSurface
 import su.levenetc.android.textsurface.animations.effects.Rotate3D
 import su.levenetc.android.textsurface.animations.sets.Sequential
-import su.levenetc.android.textsurface.contants.Align
-import su.levenetc.android.textsurface.contants.Axis
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Align
+import su.levenetc.android.textsurface.constants.Axis
+import su.levenetc.android.textsurface.constants.Pivot
 
 fun rotation3DSample(textSurface: TextSurface) {
     val textA = Text.Builder("How are you?").setPosition(Align.SURFACE_CENTER).build()

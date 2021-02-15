@@ -8,8 +8,8 @@ import android.graphics.Matrix
 import android.graphics.Paint
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import su.levenetc.android.textsurface.Text
-import su.levenetc.android.textsurface.contants.Axis
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Axis
+import su.levenetc.android.textsurface.constants.Pivot
 import su.levenetc.android.textsurface.utils.setupAndStart
 
 /**

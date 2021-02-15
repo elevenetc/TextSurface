@@ -5,8 +5,8 @@ import su.levenetc.android.textsurface.TextSurface
 import su.levenetc.android.textsurface.animations.generic.Just
 import su.levenetc.android.textsurface.animations.generic.Scale
 import su.levenetc.android.textsurface.animations.sets.Sequential
-import su.levenetc.android.textsurface.contants.Align
-import su.levenetc.android.textsurface.contants.Pivot
+import su.levenetc.android.textsurface.constants.Align
+import su.levenetc.android.textsurface.constants.Pivot
 
 fun scaleTextSample(textSurface: TextSurface) {
     val textA = Text.Builder("textA")

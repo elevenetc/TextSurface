@@ -13,7 +13,7 @@ import su.levenetc.android.textsurface.animations.generic.Delay
 import su.levenetc.android.textsurface.animations.sets.Loop
 import su.levenetc.android.textsurface.animations.sets.Parallel
 import su.levenetc.android.textsurface.animations.sets.Sequential
-import su.levenetc.android.textsurface.contants.*
+import su.levenetc.android.textsurface.constants.*
 
 fun shapeRevealSample(textSurface: TextSurface) {
     val textA = Text.Builder("Now why you loer en kyk gelyk?").setPosition(Align.SURFACE_CENTER).build()

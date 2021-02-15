@@ -17,10 +17,10 @@ import su.levenetc.android.textsurface.animations.effects.reveal.SideCut
 import su.levenetc.android.textsurface.animations.generic.Delay
 import su.levenetc.android.textsurface.animations.sets.Parallel
 import su.levenetc.android.textsurface.animations.sets.Sequential
-import su.levenetc.android.textsurface.contants.Align
-import su.levenetc.android.textsurface.contants.Direction
-import su.levenetc.android.textsurface.contants.Pivot
-import su.levenetc.android.textsurface.contants.Side
+import su.levenetc.android.textsurface.constants.Align
+import su.levenetc.android.textsurface.constants.Direction
+import su.levenetc.android.textsurface.constants.Pivot
+import su.levenetc.android.textsurface.constants.Side
 
 fun playCookieThumper(textSurface: TextSurface, assetManager: AssetManager) {
 

@@ -8,7 +8,7 @@ import android.graphics.Region
 import android.os.Build
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import su.levenetc.android.textsurface.Text
-import su.levenetc.android.textsurface.contants.Side
+import su.levenetc.android.textsurface.constants.Side
 import su.levenetc.android.textsurface.utils.setupAndStart
 
 /**
