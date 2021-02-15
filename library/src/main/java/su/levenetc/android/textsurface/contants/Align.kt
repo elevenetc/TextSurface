@@ -4,21 +4,12 @@ package su.levenetc.android.textsurface.contants
  * Created by Eugene Levenetc.
  */
 object Align {
-    @kotlin.jvm.JvmField
-    var RIGHT_OF = 2
+    const val UNDEFINED = 0
 
-    @kotlin.jvm.JvmField
-    var LEFT_OF = 4
-
-    @kotlin.jvm.JvmField
-    var TOP_OF = 16
-
-    @kotlin.jvm.JvmField
-    var BOTTOM_OF = 32
-
-    @kotlin.jvm.JvmField
-    var CENTER_OF = 64
-
-    @kotlin.jvm.JvmField
-    var SURFACE_CENTER = 128
+    const val RIGHT_OF = 2
+    const val LEFT_OF = 4
+    const val TOP_OF = 16
+    const val BOTTOM_OF = 32
+    const val CENTER_OF = 64
+    const val SURFACE_CENTER = 128
 }

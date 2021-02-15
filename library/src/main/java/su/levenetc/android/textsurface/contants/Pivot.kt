@@ -4,6 +4,9 @@ package su.levenetc.android.textsurface.contants
  * Created by Eugene Levenetc.
  */
 object Pivot {
+
+    const val UNDEFINED = 0
+
     const val TOP = 1
     const val BOTTOM = 2
     const val LEFT = 4

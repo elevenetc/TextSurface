@@ -5,9 +5,8 @@ import android.graphics.PointF
 /**
  * Created by Eugene Levenetc.
  */
-class ScaleValue {
-    private val scale = PointF(1f, 1f)
-    val pivot = PointF()
+data class ScaleValue(val scale: PointF = PointF(1f, 1f), val pivot: PointF = PointF()) {
+
     fun setValue(scale: Float) {
         this.scale[scale] = scale
     }
