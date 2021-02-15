@@ -1,36 +1,32 @@
-package su.levenetc.android.textsurface.animations
+package su.levenetc.android.textsurface.animations.effects
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
-import android.graphics.*
+import android.graphics.Camera
+import android.graphics.Canvas
+import android.graphics.Matrix
+import android.graphics.Paint
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import su.levenetc.android.textsurface.Text
-import su.levenetc.android.textsurface.TextSurface
 import su.levenetc.android.textsurface.contants.Axis
 import su.levenetc.android.textsurface.contants.Pivot
-import su.levenetc.android.textsurface.interfaces.IEndListener
-import su.levenetc.android.textsurface.interfaces.ISurfaceAnimation
-import su.levenetc.android.textsurface.interfaces.ITextEffect
-import su.levenetc.android.textsurface.utils.Utils.addEndListener
+import su.levenetc.android.textsurface.utils.setupAndStart
 
 /**
  * Created by Eugene Levenetc.
  */
 class Rotate3D private constructor(
-        override val text: Text,
-        override var duration: Long,
+        text: Text,
+        duration: Long,
         private val pivot: Int,
-        private val direction: Int,
-        private val axis: Int,
+        private val axis: Axis,
         private val show: Boolean
-) : ITextEffect, AnimatorUpdateListener {
-    protected val camera = Camera()
-    protected val cameraMatrix = Matrix()
+) : TextEffect(text, duration) {
+
+    private val camera = Camera()
+    private val cameraMatrix = Matrix()
     private var rotationX = 0f
     private var rotationY = 0f
-    override lateinit var textSurface: TextSurface
     private var cameraTransXPre = 0f
     private var cameraTransYPre = 0f
     private var cameraTransXPost = 0f
@@ -50,16 +46,10 @@ class Rotate3D private constructor(
     }
 
     override fun setInitValues(text: Text) {
-        if (show) {
-            text.setAlpha(0)
-        }
+        if (show) text.setAlpha(0)
     }
 
-    override fun onStart() {
-        text.addEffect(this)
-    }
-
-    override fun start(listener: IEndListener) {
+    override fun start() {
         var valHolder: PropertyValuesHolder? = null
         val fromDegree: Int
         val toDegree: Int
@@ -107,26 +97,19 @@ class Rotate3D private constructor(
         if (valHolder != null) {
             animator = ObjectAnimator.ofPropertyValuesHolder(this, valHolder)
             animator!!.interpolator = FastOutSlowInInterpolator()
-            addEndListener(this, animator!!, object : IEndListener {
-                override fun onAnimationEnd(animation: ISurfaceAnimation) {
-                    text.removeEffect(this@Rotate3D)
-                    if (!show) text.setAlpha(0)
-                    listener.onAnimationEnd(this@Rotate3D)
-                }
+
+            animator!!.setupAndStart(this, endDelegate = {
+                text.removeEffect(this)
+                if (!show) text.setAlpha(0)
             })
-            animator!!.duration = duration.toLong()
-            animator!!.addUpdateListener(this)
-            animator!!.start()
         } else {
             throw RuntimeException(javaClass.superclass.toString() + " was not configured properly. Pivot:" + pivot)
         }
     }
 
     override fun cancel() {
-        if (animator != null && animator!!.isRunning) {
-            animator!!.cancel()
-            animator = null
-        }
+        super.cancel()
+        animator?.cancel()
     }
 
     fun setRotationX(rotationX: Float) {
@@ -137,29 +120,21 @@ class Rotate3D private constructor(
         this.rotationY = rotationY
     }
 
-    override fun onAnimationUpdate(animation: ValueAnimator) {
-        textSurface!!.invalidate()
-    }
-
     companion object {
-        @kotlin.jvm.JvmStatic
         fun showFromSide(text: Text, duration: Long, pivot: Int): Rotate3D {
-            return Rotate3D(text, duration, pivot, 0, 0, true)
+            return Rotate3D(text, duration, pivot, Axis.Undefined, true)
         }
 
-        @kotlin.jvm.JvmStatic
-        fun showFromCenter(text: Text, duration: Long, direction: Int, axis: Int): Rotate3D {
-            return Rotate3D(text, duration, Pivot.CENTER, direction, axis, true)
+        fun showFromCenter(text: Text, duration: Long, axis: Axis): Rotate3D {
+            return Rotate3D(text, duration, Pivot.CENTER, axis, true)
         }
 
-        @kotlin.jvm.JvmStatic
         fun hideFromSide(text: Text, duration: Long, pivot: Int): Rotate3D {
-            return Rotate3D(text, duration, pivot, 0, 0, false)
+            return Rotate3D(text, duration, pivot, Axis.Undefined, false)
         }
 
-        @kotlin.jvm.JvmStatic
-        fun hideFromCenter(text: Text, duration: Long, direction: Int, axis: Int): Rotate3D {
-            return Rotate3D(text, duration, Pivot.CENTER, direction, axis, false)
+        fun hideFromCenter(text: Text, duration: Long, axis: Axis): Rotate3D {
+            return Rotate3D(text, duration, Pivot.CENTER, axis, false)
         }
     }
 }
