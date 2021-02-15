@@ -11,7 +11,7 @@ A little animation framework which could help you to show message in a nice look
 
   ```Java
   Text textDaai = TextBuilder
-  		.create("Daai")
+  		.Text.Builder("Daai")
   		.setSize(64)
   		.setAlpha(0)
   		.setColor(Color.WHITE)
