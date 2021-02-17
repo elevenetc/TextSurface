@@ -50,23 +50,27 @@ data class Position(
     }
 
     fun getX(textSurface: TextSurface, textWidth: Float): Float {
-        alignText?.let { alignText ->
-            if (align != Align.UNDEFINED) {
-                when {
-                    alignedWith(Align.SURFACE_CENTER) -> {
-                        point.x = -textWidth / 2
-                    }
-                    alignedWith(Align.RIGHT_OF) -> {
-                        point.x = alignText.getX(textSurface) + alignText.width
-                    }
-                    alignedWith(Align.LEFT_OF) -> {
-                        point.x = alignText.getX(textSurface) - textWidth
-                    }
-                    alignedWith(Align.CENTER_OF) -> {
-                        point.x = alignText.getX(textSurface) + (alignText.width - textWidth) / 2
-                    }
-                    else -> {
-                        point.x = alignText.getX(textSurface)
+
+        if (align != Align.UNDEFINED) {
+            if (alignedWith(Align.SURFACE_CENTER)) {
+                point.x = -textWidth / 2
+            } else {
+                alignText?.let { alignText ->
+                    if (align != Align.UNDEFINED) {
+                        when {
+                            alignedWith(Align.RIGHT_OF) -> {
+                                point.x = alignText.getX(textSurface) + alignText.width
+                            }
+                            alignedWith(Align.LEFT_OF) -> {
+                                point.x = alignText.getX(textSurface) - textWidth
+                            }
+                            alignedWith(Align.CENTER_OF) -> {
+                                point.x = alignText.getX(textSurface) + (alignText.width - textWidth) / 2
+                            }
+                            else -> {
+                                point.x = alignText.getX(textSurface)
+                            }
+                        }
                     }
                 }
             }
@@ -74,30 +78,32 @@ data class Position(
         return point.x + translationX
     }
 
-    fun getY(textSurface: TextSurface?, textHeight: Float): Float {
-        alignText?.let { alignText ->
-            if (align != Align.UNDEFINED) {
-                when {
-                    alignedWith(Align.SURFACE_CENTER) -> {
-                        point.y = textHeight / 2
-                    }
-                    alignedWith(Align.TOP_OF) -> {
-                        point.y = alignText.getY(textSurface) - alignText.height
-                    }
-                    alignedWith(Align.BOTTOM_OF) -> {
-                        point.y = alignText.getY(textSurface) + textHeight
-                    }
-                    alignedWith(Align.CENTER_OF) -> {
-                        point.y = alignText.getY(textSurface) - (alignText.height - textHeight) / 2
-                    }
-                    else -> {
-                        point.y = alignText.getY(textSurface)
+    fun getY(textSurface: TextSurface, textHeight: Float): Float {
+
+        if (align != Align.UNDEFINED) {
+            if (alignedWith(Align.SURFACE_CENTER)) {
+                point.y = textHeight / 2
+            } else {
+                alignText?.let { alignText ->
+                    if (align != Align.UNDEFINED) {
+                        when {
+                            alignedWith(Align.TOP_OF) -> {
+                                point.y = alignText.getY(textSurface) - alignText.height
+                            }
+                            alignedWith(Align.BOTTOM_OF) -> {
+                                point.y = alignText.getY(textSurface) + textHeight
+                            }
+                            alignedWith(Align.CENTER_OF) -> {
+                                point.y = alignText.getY(textSurface) - (alignText.height - textHeight) / 2
+                            }
+                            else -> {
+                                point.y = alignText.getY(textSurface)
+                            }
+                        }
                     }
                 }
             }
         }
-
-
         return point.y + translationY
     }
 
