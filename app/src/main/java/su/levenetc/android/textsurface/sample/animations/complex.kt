@@ -6,17 +6,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import su.levenetc.android.textsurface.Text
 import su.levenetc.android.textsurface.TextSurface
-import su.levenetc.android.textsurface.animations.camera.TransSurface
-import su.levenetc.android.textsurface.animations.colors.Alpha
-import su.levenetc.android.textsurface.animations.colors.ChangeColor
-import su.levenetc.android.textsurface.animations.effects.Rotate3D
-import su.levenetc.android.textsurface.animations.effects.Slide
-import su.levenetc.android.textsurface.animations.effects.reveal.Circle
-import su.levenetc.android.textsurface.animations.effects.reveal.ShapeReveal
-import su.levenetc.android.textsurface.animations.effects.reveal.SideCut
-import su.levenetc.android.textsurface.animations.generic.Delay
-import su.levenetc.android.textsurface.animations.sets.Parallel
-import su.levenetc.android.textsurface.animations.sets.Sequential
+import su.levenetc.android.textsurface.animations.*
 import su.levenetc.android.textsurface.constants.Align
 import su.levenetc.android.textsurface.constants.Direction
 import su.levenetc.android.textsurface.constants.Pivot
@@ -83,34 +73,64 @@ fun playCookieThumper(textSurface: TextSurface, assetManager: AssetManager) {
             .setAlpha(0)
             .setColor(Color.RED)
             .setPosition(Align.BOTTOM_OF or Align.CENTER_OF, textDevilishGang).build()
-    textSurface.play(
-            Sequential(
-                    ShapeReveal.reveal(textDaai, 750, SideCut.showSideCut(Side.LEFT)),
-                    Parallel(ShapeReveal.reveal(textDaai, 600, SideCut.hideSideCut(Side.LEFT)), Sequential(Delay.delay(300), ShapeReveal.reveal(textDaai, 600, SideCut.showSideCut(Side.LEFT)))),
-                    Parallel(TransSurface(500, textBraAnies, Pivot.CENTER), ShapeReveal.reveal(textBraAnies, 1300, SideCut.showSideCut(Side.LEFT))),
-                    Delay.delay(500),
-                    Parallel(TransSurface(750, textFokkenGamBra, Pivot.CENTER), Slide.showFrom(Side.LEFT, textFokkenGamBra, 750), ChangeColor.to(textFokkenGamBra, 750, Color.WHITE)),
-                    Delay.delay(500),
-                    Parallel(TransSurface.toCenterOf(textHaai, 500), Rotate3D.showFromSide(textHaai, 750, Pivot.TOP)),
-                    Parallel(TransSurface.toCenterOf(textDaaiAnies, 500), Slide.showFrom(Side.TOP, textDaaiAnies, 500)),
-                    Parallel(TransSurface.toCenterOf(texThyLamInnie, 750), Slide.showFrom(Side.LEFT, texThyLamInnie, 500)),
-                    Delay.delay(500),
-                    Parallel(
-                            TransSurface(1500, textSignsInTheAir, Pivot.CENTER),
-                            Sequential(
-                                    Sequential(ShapeReveal.reveal(textThrowDamn, 500, Circle.show(Side.CENTER, Direction.OUT))),
-                                    Sequential(ShapeReveal.reveal(textDevilishGang, 500, Circle.show(Side.CENTER, Direction.OUT))),
-                                    Sequential(ShapeReveal.reveal(textSignsInTheAir, 500, Circle.show(Side.CENTER, Direction.OUT)))
-                            )
-                    ),
-                    Delay.delay(200),
-                    Parallel(
-                            ShapeReveal.reveal(textThrowDamn, 1500, SideCut.hideSideCut(Side.LEFT), true),
-                            Sequential(Delay.delay(250), ShapeReveal.reveal(textDevilishGang, 1500, SideCut.hideSideCut(Side.LEFT), true)),
-                            Sequential(Delay.delay(500), ShapeReveal.reveal(textSignsInTheAir, 1500, SideCut.hideSideCut(Side.LEFT), true)),
-                            Alpha.hide(texThyLamInnie, 1500),
-                            Alpha.hide(textDaaiAnies, 1500)
-                    )
-            )
-    )
+
+    val animation = sequential {
+        showSideCut(textDaai, 750, Side.LEFT)
+        parallel {
+            hideSideCut(textDaai, 600, Side.LEFT)
+            sequential {
+                delay(300)
+                showSideCut(textDaai, 600, Side.LEFT)
+            }
+        }
+        parallel {
+            showSideCut(textBraAnies, 1300, Side.LEFT)
+            transSurface(textBraAnies, 500, Pivot.CENTER)
+        }
+        delay(500)
+        parallel {
+            showSliding(textFokkenGamBra, 750, Side.LEFT)
+            transSurface(textFokkenGamBra, 750, Pivot.CENTER)
+            changeColor(textFokkenGamBra, 750, Color.WHITE)
+        }
+        delay(500)
+        parallel {
+            rotate3d(textHaai, 750, Pivot.TOP)
+            transSurfaceToCenterOf(textHaai, 500)
+        }
+        parallel {
+            showSliding(textDaaiAnies, 500, Pivot.TOP)
+            transSurfaceToCenterOf(textDaaiAnies, 500)
+        }
+        parallel {
+            showSliding(texThyLamInnie, 500, Side.LEFT)
+            transSurfaceToCenterOf(texThyLamInnie, 500)
+        }
+        delay(500)
+        parallel {
+            transSurface(textSignsInTheAir, 1500, Pivot.CENTER)
+            sequential {
+                showCircle(textThrowDamn, 500, Side.CENTER, Direction.OUT)
+                showCircle(textDevilishGang, 500, Side.CENTER, Direction.OUT)
+                showCircle(textSignsInTheAir, 500, Side.CENTER, Direction.OUT)
+            }
+        }
+        delay(200)
+        parallel {
+            removeSideCut(textThrowDamn, 1500, Side.LEFT)
+            sequential {
+                delay(250)
+                removeSideCut(textDevilishGang, 1500, Side.LEFT)
+            }
+            sequential {
+                delay(500)
+                removeSideCut(textSignsInTheAir, 1500, Side.LEFT)
+            }
+            hide(textHaai, 1500)
+            hide(texThyLamInnie, 1500)
+            hide(textDaaiAnies, 1500)
+        }
+    }
+
+    textSurface.play(animation)
 }
