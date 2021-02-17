@@ -1,6 +1,7 @@
 package su.levenetc.android.textsurface
 
 import android.graphics.*
+import androidx.annotation.Dimension
 import su.levenetc.android.textsurface.animations.effects.TextEffect
 import su.levenetc.android.textsurface.common.Position
 import su.levenetc.android.textsurface.common.ScaleValue
@@ -109,7 +110,7 @@ class Text(val value: String, var position: Position, private val padding: RectF
         matrix.mapRect(currentSize)
     }
 
-    fun getY(textSurface: TextSurface?): Float {
+    fun getY(textSurface: TextSurface): Float {
         return position.getY(textSurface, height)
     }
 
@@ -198,8 +199,8 @@ class Text(val value: String, var position: Position, private val padding: RectF
             return this
         }
 
-        fun setPadding(padding: RectF?): Builder {
-            this.padding.set(padding!!)
+        fun setPadding(padding: RectF): Builder {
+            this.padding.set(padding)
             return this
         }
 
@@ -211,7 +212,7 @@ class Text(val value: String, var position: Position, private val padding: RectF
         /**
          * Overrides all previously set paint properties
          */
-        fun setPaint(paint: Paint?): Builder {
+        fun setPaint(paint: Paint): Builder {
             this.paint = Paint(paint)
             return this
         }
@@ -229,7 +230,7 @@ class Text(val value: String, var position: Position, private val padding: RectF
             return this
         }
 
-        fun setSize(size: Float): Builder {
+        fun setSize(@Dimension(unit = Dimension.SP) size: Float): Builder {
             paint.textSize = size.toSp()
             return this
         }
