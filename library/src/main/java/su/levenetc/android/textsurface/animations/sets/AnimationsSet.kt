@@ -8,7 +8,7 @@ import su.levenetc.android.textsurface.animations.SurfaceAnimation
  */
 abstract class AnimationsSet(duration: Long, vararg animations: SurfaceAnimation) : SurfaceAnimation(duration) {
 
-    val animations: List<SurfaceAnimation> = animations.toList()
+    val animations = animations.toMutableList()
     private var currentAnimation: SurfaceAnimation? = null
 
     override var textSurface: TextSurface
